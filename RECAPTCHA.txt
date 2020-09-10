@@ -1,0 +1,34 @@
+<!-- INSTALAR TAG NO HEAD DO SITE -->
+​
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+</script>
+​
+<!-- COLOCAR NO ID DO FORMULÁRIO -->
+​
+<form id="captchaform">
+</form>
+​
+<!-- COLOCAR ANTES DO INPUT OU BUTTON SUBMIT -->
+​
+<div id="html_element"></div>
+​
+<!-- COLOCAR ABAIXO DA TAG </form> -->
+​
+<script type="text/javascript">
+  var onloadCallback = function() {
+    grecaptcha.render('html_element', {
+      'sitekey': 'SUA SITEKEY AQUI'
+    });
+  };
+  document.getElementById("captchaform").addEventListener("submit", function(evt) {
+    var response = grecaptcha.getResponse();
+    if (response.length == 0) {
+      //reCaptcha not verified
+      alert("Confirme que você não é um robô!");
+      evt.preventDefault();
+      return false;
+    }
+    //captcha verified
+    //do the rest of your validations here
+  });
+</script>
